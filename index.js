@@ -32,5 +32,5 @@ client.on('message', message=>{
     }
 });
 
-client.login('ODAxMDkyODc4MTIxMzA0MDky.YAbp4Q.aGr5WVenBENDpxiAbxTb3-WS5oQ');
+client.login(process.env.BOT_TOKEN);
 //Have nothing below
