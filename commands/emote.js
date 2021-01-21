@@ -9,6 +9,7 @@ module.exports = {
         if(emote){
             message.delete();
             message.channel.send(`${emote}`);
+            message.channel.send(`(${messgae.author.username})`);
         }else{
             message.channel.send('I don\'t have access to that emote');
         }
