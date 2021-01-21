@@ -4,7 +4,7 @@ module.exports = {
     execute(message, args){
         if(args.length === 0)
             return message.reply('please specify command!\nHint: To get list of commands use !list');
-        const cmd = message.client.commands.get(args[0]);
+        const cmd = message.client.commands.get(args[0].toLowerCase());
         if(cmd){
             message.channel.send(`${cmd.description}`);
         }else{

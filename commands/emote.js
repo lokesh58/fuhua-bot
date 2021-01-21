@@ -5,7 +5,7 @@ module.exports = {
         if(args.length === 0)
             return message.reply('please specify emote!');
         
-        const emote = message.client.emojis.cache.find(emoji => emoji.name === args[0]);
+        const emote = message.client.emojis.cache.find(emoji => emoji.name.toLowerCase() === args[0].toLowerCase());
         if(emote){
             message.delete();
             message.channel.send(`${emote}`);
