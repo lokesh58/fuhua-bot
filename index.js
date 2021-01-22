@@ -1,15 +1,15 @@
 require('dotenv').config();
-const Discord = require('discord.js');
+import { Client, Collection } from 'discord.js';
 
-const client = new Discord.Client();
+const client = new Client();
 
 const prefix = '!';
 
-const fs = require('fs');
+import { readdirSync } from 'fs';
 
-client.commands = new Discord.Collection();
+client.commands = new Collection();
 
-const commandFiles = fs.readdirSync('./commands/').filter(file=>file.endsWith('.js'));
+const commandFiles = readdirSync('./commands/').filter(file=>file.endsWith('.js'));
 for(const file of commandFiles){
     const command = require(`./commands/${file}`);
 
