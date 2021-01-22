@@ -21,7 +21,11 @@ client.once('ready', ()=>{
 });
 
 client.on('message', message=>{
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
+    const bbr = client.emojis.cache.find(emoji => emoji.name.toLowerCase() === 'bigbrainrevolution');
+    const fhs = client.emojis.cache.find(emoji => emoji.name.toLowerCase() === 'fuhuasmile');
+    if(message.author.bot) return;
+    if(!message.content.startsWith(prefix)) return message.react(`${bbr}`);
+    message.react(`${fhs}`);
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
