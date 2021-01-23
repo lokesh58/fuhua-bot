@@ -4,6 +4,7 @@ module.exports = {
     execute(message, args){
         if(args.length === 0)
             return message.reply('please specify something to echo!');
+        message.delete();
         message.channel.send(args.join(' '));
     }
 }
