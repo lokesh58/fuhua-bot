@@ -1,6 +1,6 @@
 module.exports = {
     name: 'emote',
-    description: 'Echo the emote specified (even animated ones 😉)\nFormat: !emote <emote name>',
+    description: 'Echo the emote specified (even animated ones 😉)\n**Format:** !emote <emote name>',
     execute(message, args){
         if(args.length === 0)
             return message.reply('please specify emote!');
