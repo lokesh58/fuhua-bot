@@ -1,6 +1,7 @@
 module.exports = {
     name: 'purge',
-    description: 'Delete specified number of messages from channel. Keep in mind the command is also counted in it.\n**Format:** !purge <count>',
+    description: 'Delete specified number of messages from channel. Keep in mind the command is also counted in it.',
+    format:'!purge <count>',
     async execute(message, args){
         if(!message.member.hasPermission('MANAGE_MESSAGES'))
             return message.reply('you don\'t have the permission to use this command');

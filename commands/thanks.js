@@ -1,6 +1,7 @@
 module.exports = {
     name: 'thanks',
-    description: 'this is thanks command!',
+    description: 'Removes the effect of shh command!',
+    format:'!thanks',
     execute(message, args){
         if(!message.member.hasPermission('MANAGE_CHANNELS'))
             return message.reply('you don\'t have the permission to use this command');

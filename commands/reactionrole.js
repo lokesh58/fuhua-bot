@@ -3,6 +3,7 @@ const {MessageEmbed} = require('discord.js');
 module.exports = {
     name: 'reactionrole',
     description: 'Sets up the reaction role message',
+    format:'!reactionrole',
     async execute(message, args){
         const channel = '802928508875046943';
         const glbRole = message.guild.roles.cache.find(role => role.name === 'global');
