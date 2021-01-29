@@ -12,6 +12,7 @@ module.exports = {
             let embed = new MessageEmbed()
                             .setTitle(`${cmd.name}`)
                             .setDescription(`${cmd.description}`)
+                            .addField('Format', `${cmd.format}`)
                             .setColor('#c60a0a');
             message.channel.send(embed);
         }else{
