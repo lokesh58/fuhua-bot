@@ -1,12 +1,18 @@
+const {MessageEmbed} = require('discord.js');
+
 module.exports = {
     name: 'help',
-    description: 'gives the use of commands.\nFormat: !help <command name>',
+    description: 'gives the use of commands.\n**Format:** !help <command name>',
     execute(message, args){
         if(args.length === 0)
             return message.reply('please specify command!\nHint: To get list of commands use !list');
         const cmd = message.client.commands.get(args[0].toLowerCase());
         if(cmd){
-            message.channel.send(`${cmd.description}`);
+            let embed = new MessageEmbed()
+                            .setTitle(`${cmd.name}`)
+                            .setDescription(`${cmd.description}`)
+                            .setColor('#c60a0a');
+            message.channel.send(embed);
         }else{
             message.channel.send('The command doesn\'t exist');
         }
