@@ -17,10 +17,12 @@ for(const file of commandFiles){
 }
 
 const reactionRole = require('./utilities/reactionrole.js');
+const memberCount = require('./utilities/membercount.js');
 
 client.once('ready', ()=>{
     console.log('Fu Hua is online');
     reactionRole(client);
+    memberCount(client);
 });
 
 client.on('message', message=>{
