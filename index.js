@@ -16,13 +16,14 @@ for(const file of commandFiles){
     client.commands.set(command.name, command);
 }
 
-const reactionRole = require('./utilities/reactionrole.js');
-const memberCount = require('./utilities/membercount.js');
+const utilityFiles = fs.readdirSync('./utilities/').filter(file=>file.endsWith('.js'));
 
 client.once('ready', ()=>{
     console.log('Fu Hua is online');
-    reactionRole(client);
-    memberCount(client);
+    for(const file of utilityFiles){
+        const utility = require(`./utilities/${file}`);
+        utility(client);
+    }
 });
 
 client.on('message', message=>{
