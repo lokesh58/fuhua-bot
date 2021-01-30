@@ -10,11 +10,7 @@ module.exports = {
         if(emote){
             message.delete();
             message.channel.send(`${emote}`);
-            if(message.member.nickname){
-                message.channel.send(`(${message.member.nickname})`);
-            }else{
-                message.channel.send(`(${message.author.username})`);
-            }
+            message.channel.send(`(${message.member.displayName})`);
         }else{
             message.channel.send('I don\'t have access to that emote');
         }
