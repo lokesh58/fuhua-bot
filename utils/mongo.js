@@ -5,7 +5,8 @@ const mongoPath = `mongodb+srv://fuhua:${process.env.DB_PASS}@faq.nhcks.mongodb.
 module.exports = async() => {
     await mongoose.connect(mongoPath, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false
     });
     return mongoose;
 }
