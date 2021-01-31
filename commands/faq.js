@@ -45,6 +45,9 @@ module.exports = {
     description: 'Quickly send an faq in chat',
     format: '!faq <faq name/id>',
     async execute(message, args){
+        if(!message.member.hasPermission('MANAGE_MESSAGES')){
+            return message.reply('you don\'t have the permission to use this command');
+        }
         if(args.length === 0){
             return message.reply('please use the correct format: !faq <faq name/id>');
         }
@@ -67,7 +70,7 @@ module.exports = {
                 message.channel.send(`FAQ "${name}" was not found`);
             }else{
                 let embed = new MessageEmbed()
-                        .setTitle(`${name}`)
+                        .setTitle(`FAQ ${name}`)
                         .setDescription(`${faq}`)
                         .setColor('#c60a0a'); 
                 message.channel.send(embed);
