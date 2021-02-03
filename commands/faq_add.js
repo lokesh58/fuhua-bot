@@ -1,7 +1,6 @@
 const cache = require('@cache/faq-cache.js');
 const mongo = require('@utils/mongo.js');
 const faqSchema = require('@schemas/faq-schema.js');
-const { Mongoose } = require('mongoose');
 
 const checkExistence = (newTag) => {
     for(const id=0; id<cache.length; ++id){
