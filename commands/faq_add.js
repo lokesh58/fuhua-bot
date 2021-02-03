@@ -3,7 +3,7 @@ const mongo = require('@utils/mongo.js');
 const faqSchema = require('@schemas/faq-schema.js');
 
 const checkExistence = (newTag) => {
-    for(const id=0; id<cache.length; ++id){
+    for(let id=0; id<cache.length; ++id){
         for(const tag of cache[id].tags){
             if(tag.includes(newTag) || newTag.includes(tag)){
                 return true;
