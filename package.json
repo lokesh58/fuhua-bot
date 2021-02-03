@@ -18,6 +18,7 @@
   },
   "_moduleAliases": {
     "@utils"   : "./utils",
-    "@schemas" : "./schemas"
+    "@schemas" : "./schemas",
+    "@cache"   : "./cache"
   }
 }
