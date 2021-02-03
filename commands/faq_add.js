@@ -44,18 +44,18 @@ module.exports = {
         let description = '';
         //Parse the command to get tags and description
         for(let i=0; i<args.length; ++i){
-            if(args[i] === '-tag'){
+            if(args[i].toLowerCase() === '-tag'){
                 let j=i+1;
                 let tag = '';
-                while(j<args.length && args[j] !== '-tag' && args[j] !== '-desc'){
+                while(j<args.length && args[j].toLowerCase() !== '-tag' && args[j].toLowerCase() !== '-desc'){
                     if(tag.length > 0) tag += ' ';
                     tag += args[j++];
                 }
                 tags.push(tag.toLowerCase());
                 i=j-1;
-            } else if (args[i] === '-desc'){
+            } else if (args[i].toLowerCase() === '-desc'){
                 let j=i+1;
-                while(j<args.length && args[j] !== '-tag' && args[j] !== '-desc'){
+                while(j<args.length && args[j].toLowerCase() !== '-tag' && args[j].toLowerCase() !== '-desc'){
                     if(description.length > 0) description += ' ';
                     description += args[j++];
                 }
