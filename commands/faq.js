@@ -3,74 +3,55 @@ const faqSchema = require('@schemas/faq-schema.js');
 
 const {MessageEmbed} = require('discord.js');
 
-const cache = {};
+const cache = require('@cache/faq-cache.js');
 
-const addFAQ = async (name, description)=>{
-    cache[name] = description;
-    await mongo().then(async (mongoose) => {
-        try{
-            await faqSchema.findOneAndUpdate({
-                name: name
-            },{
-                name: name,
-                description: description
-            },{
-                upsert: true
-            });
-        }finally{
-            mongoose.connection.close();
+const findByName = (name) => {
+    for(let id = 0; id < cache.length; ++id){
+        if(cache[id].name === name){
+            return cache[id].description;
         }
-    }).catch(console.error);
-}
-
-const findFAQ = async (name) => {
-    let data = cache[name];
-    if(!data){
-        console.log('Fetching from database');
-        await mongo().then(async (mongoose) => {
-            try{
-                await faqSchema.findOne({name: name}).then((result)=>{
-                    if(result) cache[name] = data = result.description;
-                });
-            }finally{
-                mongoose.connection.close();
-            }
-        }).catch(console.error);
     }
-    return data;
+    return null;
 }
 
 module.exports = {
     name: 'faq',
     description: 'Quickly send an faq in chat',
     format: '!faq <faq name/id>',
-    async execute(message, args){
+    execute(message, args){
         if(!message.member.hasPermission('MANAGE_MESSAGES')){
             return message.reply('you don\'t have the permission to use this command');
         }
         if(args.length === 0){
-            return message.reply('please use the correct format: !faq <faq name/id>');
-        }
-        if(args[0].toLowerCase() === 'add'){
-            if(args.length < 3){
-                return message.reply('please specify the name and description for the FAQ');
-            }
-            args.shift();
-            const name = args.shift().toLowerCase();
-            if(name === 'add'){
-                return message.reply('name of faq cannot be "add"');
-            }
-            const description = args.join(' ');
-            await addFAQ(name, description);
-            message.channel.send(`FAQ "${name}" was successfully created`);
-        }else{
-            const name = args[0].toLowerCase();
-            const faq = await findFAQ(name);
-            if(!faq){
-                message.channel.send(`FAQ "${name}" was not found`);
+            let list = '';
+            if(cache.length === 0){
+                list = 'No FAQ added';
             }else{
-                message.channel.send(faq);
+                for(let id=0; id<cache.length; ++id){
+                    if(id>0)list+='\n';
+                    list += `${id+1}. ${cache[id].name}`;
+                }
             }
+            const embed = new MessageEmbed()
+                                .setTitle('List of FAQ')
+                                .setDescription(list)
+                                .setColor('#c60a0a');
+            return message.channel.send(embed);
+        }
+        let faq = null;
+        if(isNaN(args[0])){
+            const name = args.join(' ').toLowerCase();
+            faq = findByName(name);
+        }else{
+            const id = +args[0]-1;
+            if(id >= 0 && id < cache.length){
+                faq = cache[id].description;
+            }
+        }
+        if(!faq){
+            message.channel.send(`FAQ was not found`);
+        }else{
+            message.channel.send(faq);
         }
     }
 }
