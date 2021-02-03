@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
-const reqString = {
-    type: String,
-    required: true
-};
-
 const faqSchema = mongoose.Schema({
-    name: reqString,
-    description: reqString
+    tags: {
+        type: [String],
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('faqs', faqSchema);

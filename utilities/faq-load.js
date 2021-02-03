@@ -7,7 +7,8 @@ module.exports = async () => {
         try{
             const faqs = await faqSchema.find({});
             for(const faq of faqs){
-                cache.push({name: faq.name,
+                cache.push({id: faq._id,
+                            tags: faq.tags,
                             description: faq.description});
             }
         } finally {
