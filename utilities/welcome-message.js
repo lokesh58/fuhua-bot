@@ -8,9 +8,13 @@ module.exports = client => {
 
         const {guild} = member;
         const valkRole = guild.roles.cache.find(role => role.name === 'Valkyrija');
-        member.roles.add(valkRole);
-
-        const message = `Welcome <@${member.id}> to St. Freya High. Please check out ${rulesChannel.toString()}`;
-        welcomeChannel.send(message);
+        const botRole = guild.roles.cache.find(role => role.name === 'Bot');
+        if(member.user.bot){
+            member.roles.add(botRole);
+        }else{
+            member.roles.add(valkRole);
+            const message = `Welcome <@${member.id}> to St. Freya High. Please check out ${rulesChannel.toString()}`;
+            welcomeChannel.send(message);
+        }
     })
 }
