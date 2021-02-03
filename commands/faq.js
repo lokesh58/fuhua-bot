@@ -5,10 +5,12 @@ const {MessageEmbed} = require('discord.js');
 
 const cache = require('@cache/faq-cache.js');
 
-const findByName = (name) => {
+const findByTag = (tag) => {
     for(let id = 0; id < cache.length; ++id){
-        if(cache[id].name === name){
-            return cache[id].description;
+        for(const _tag of cache[id].tags){
+            if(_tag.includes(tag)){
+                return cache[id].description;
+            }
         }
     }
     return null;
@@ -17,7 +19,7 @@ const findByName = (name) => {
 module.exports = {
     name: 'faq',
     description: 'Quickly send an faq in chat',
-    format: '!faq <faq name/id>',
+    format: '!faq <faq id/tag>',
     execute(message, args){
         if(!message.member.hasPermission('MANAGE_MESSAGES')){
             return message.reply('you don\'t have the permission to use this command');
@@ -29,7 +31,7 @@ module.exports = {
             }else{
                 for(let id=0; id<cache.length; ++id){
                     if(id>0)list+='\n';
-                    list += `${id+1}. ${cache[id].name}`;
+                    list += `• \`${id+1}.\` ${cache[id].tags.join(", ")}`;
                 }
             }
             const embed = new MessageEmbed()
@@ -40,8 +42,8 @@ module.exports = {
         }
         let faq = null;
         if(isNaN(args[0])){
-            const name = args.join(' ').toLowerCase();
-            faq = findByName(name);
+            const tag = args.join(' ').toLowerCase();
+            faq = findByTag(tag);
         }else{
             const id = +args[0]-1;
             if(id >= 0 && id < cache.length){
