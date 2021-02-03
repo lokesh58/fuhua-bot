@@ -20,11 +20,11 @@ for(const file of commandFiles){
 const utilityFiles = fs.readdirSync('./utilities/').filter(file=>file.endsWith('.js'));
 
 client.once('ready', ()=>{
-    console.log('Fu Hua is online');
     for(const file of utilityFiles){
         const utility = require(`./utilities/${file}`);
         utility(client);
     }
+    console.log('Fu Hua is online');
 });
 
 client.on('message', message=>{
