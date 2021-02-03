@@ -40,18 +40,5 @@ client.on('message', message=>{
     }
 });
 
-client.on('messageUpdate', (oldMessage, message) => {
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
-
-    const cmd = client.commands.get(command);
-    if(cmd){
-        cmd.execute(message, args);
-    }else{
-        message.reply('This is not a valid command!\nHint: To get list of all valid commands, use !list');
-    }
-});
-
 client.login(process.env.BOT_TOKEN);
 //Have nothing below
