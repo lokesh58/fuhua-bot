@@ -47,15 +47,15 @@ module.exports = {
             if(args[i] === '-tag'){
                 let j=i+1;
                 let tag = '';
-                while(j<args.length && !args[j].startsWith('-')){
+                while(j<args.length && args[j] !== '-tag' && args[j] !== '-desc'){
                     if(tag.length > 0) tag += ' ';
                     tag += args[j++];
                 }
-                tags.push(tag);
+                tags.push(tag.toLowerCase());
                 i=j-1;
             } else if (args[i] === '-desc'){
                 let j=i+1;
-                while(j<args.length && !args[j].startsWith('-')){
+                while(j<args.length && args[j] !== '-tag' && args[j] !== '-desc'){
                     if(description.length > 0) description += ' ';
                     description += args[j++];
                 }
