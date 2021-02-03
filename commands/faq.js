@@ -69,11 +69,7 @@ module.exports = {
             if(!faq){
                 message.channel.send(`FAQ "${name}" was not found`);
             }else{
-                let embed = new MessageEmbed()
-                        .setTitle(`FAQ ${name}`)
-                        .setDescription(`${faq}`)
-                        .setColor('#c60a0a'); 
-                message.channel.send(embed);
+                message.channel.send(faq);
             }
         }
     }
