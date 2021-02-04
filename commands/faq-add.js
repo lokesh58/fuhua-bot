@@ -33,9 +33,9 @@ const addFAQ = async (tags, description) => {
 }
 
 module.exports = {
-    name: 'faq_add',
+    name: 'faq-add',
     description: 'Add an FAQ',
-    format: '!faq_add -tag <tag> ... -desc <description>',
+    format: '!faq-add -tag <tag> ... -desc <description>',
     async execute(message, args){
         if(!message.member.hasPermission('MANAGE_MESSAGES')){
             return message.reply('you don\'t have the permission to use this command');

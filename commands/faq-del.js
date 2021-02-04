@@ -13,9 +13,9 @@ const deleteFAQ = async (id) => {
 }
 
 module.exports = {
-    name: 'faq_del',
+    name: 'faq-del',
     description: 'delete an FAQ',
-    format: '!faq_del <faq id>',
+    format: '!faq-del <faq id>',
     async execute(message, args){
         if(args.length === 0){
             return message.reply('please specify the id of faq to delete');
