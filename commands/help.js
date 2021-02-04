@@ -5,8 +5,10 @@ module.exports = {
     description: 'gives the use of commands.',
     format:'!help <command name>',
     execute(message, args){
-        if(args.length === 0)
-            return message.reply('please specify command!\nHint: To get list of commands use !list');
+        if(args.length === 0){
+           message.client.commands.get('list').execute(message, args);
+           return;
+        }
         const cmd = message.client.commands.get(args[0].toLowerCase());
         if(cmd){
             let embed = new MessageEmbed()
