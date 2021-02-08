@@ -42,7 +42,7 @@ client.on('message', message=>{
             message.reply('This is not a valid command!\nHint: To get list of all valid commands, use !list');
         }
     }else{
-        fakeNitro(message);
+        //fakeNitro(message);
     }
 });
 
