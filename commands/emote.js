@@ -1,7 +1,7 @@
 module.exports = {
     name: 'emote',
     description: 'Echo the emote specified (even animated ones 😉)',
-    format:'!emote <emote name>',
+    format:`${process.env.PREFIX}emote <emote name>`,
     execute(message, args){
         if(args.length === 0)
             return message.reply('please specify emote!');

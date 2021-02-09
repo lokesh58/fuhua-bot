@@ -4,7 +4,7 @@ const {MessageEmbed} = require('discord.js')
 module.exports = {
     name: 'editsnipe',
     description: 'Snipes the last edited message in the channel',
-    format: '!editsnipe',
+    format: `${process.env.PREFIX}editsnipe`,
     execute(message, args){
         const {channel} = message
         const channelID = channel.id

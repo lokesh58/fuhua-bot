@@ -3,7 +3,7 @@ const {MessageEmbed} = require('discord.js');
 module.exports = {
     name: 'list',
     description: 'gives the list of all commands.',
-    format: '!list',
+    format: `${process.env.PREFIX}list`,
     execute(message, args){
         //console.log(message.client.commands.values());
         let embed = new MessageEmbed()

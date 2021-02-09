@@ -1,10 +1,9 @@
 require('dotenv').config();
 require('module-alias/register');
 const {Client} = require('discord.js');
+const fs = require('fs')
 
 const client = new Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
-
-const prefix = '!';
 
 client.once('ready', ()=>{
     const utilityFiles = fs.readdirSync('./utilities/').filter(file=>file.endsWith('.js'));

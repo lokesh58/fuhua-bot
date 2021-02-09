@@ -3,7 +3,7 @@ const {MessageEmbed} = require('discord.js');
 module.exports = {
     name: 'help',
     description: 'gives the use of commands.',
-    format:'!help <command name>',
+    format:`${process.env.PREFIX}help <command name>`,
     execute(message, args){
         if(args.length === 0){
            message.client.commands.get('list').execute(message, args);

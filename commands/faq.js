@@ -19,7 +19,7 @@ const findByTag = (tag) => {
 module.exports = {
     name: 'faq',
     description: 'Quickly send an faq in chat',
-    format: '!faq <faq id/tag>',
+    format: `${process.env.PREFIX}faq <faq id/tag>`,
     execute(message, args){
         if(!message.member.hasPermission('MANAGE_MESSAGES')){
             return message.reply('you don\'t have the permission to use this command');
