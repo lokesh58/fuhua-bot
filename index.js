@@ -11,7 +11,7 @@ client.once('ready', ()=>{
         const utility = require(`./utilities/${file}`);
         utility(client);
     }
-    console.log('Fu Hua is online');
+    console.log(`${client.user.username} is online`);
 });
 
 client.login(process.env.BOT_TOKEN);
