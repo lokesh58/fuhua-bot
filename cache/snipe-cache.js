@@ -1,0 +1,3 @@
+cache = {}
+
+module.exports = cache
