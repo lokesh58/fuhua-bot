@@ -17,6 +17,9 @@ module.exports = {
     description: 'delete an FAQ',
     format: `${process.env.PREFIX}faq-del <faq id>`,
     async execute(message, args){
+        if(!message.member.hasPermission('MANAGE_MESSAGES')){
+            return message.reply('you don\'t have the permission to use this command');
+        }
         if(args.length === 0){
             return message.reply('please specify the id of faq to delete');
         }
