@@ -10,7 +10,7 @@ module.exports = (client) => {
     }
     client.on('message', message=>{
         const prefix = process.env.PREFIX
-        if(message.author.bot) return;
+        if(message.author.bot || message.channel.type === 'dm') return;
         if(message.content.startsWith(prefix)){
             const args = message.content.slice(prefix.length).split(/ +/)
             const command = args.shift().toLowerCase()
