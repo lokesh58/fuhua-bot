@@ -21,6 +21,8 @@ module.exports = async (message) => {
         const fakeUser = await message.channel.createWebhook(message.member.displayName, {
             avatar: message.author.displayAvatarURL()
         })
-        fakeUser.send(newMsg.join(' '));
+        fakeUser.send(newMsg.join(' ')).then(message =>{
+            fakeUser.delete()
+        });
     }
 }
