@@ -11,6 +11,8 @@ module.exports = client => {
         const rulesChannelID = '801755778338783242';
         const rulesChannel = guild.channels.cache.get(rulesChannelID);
 
+        if(!welcomeChannel || !annoucementChannel || !rulesChannel) return;
+
         if(member.user.bot){
             annoucementChannel.send(`${member.displayName} has been added to the server!`)
         }else{
