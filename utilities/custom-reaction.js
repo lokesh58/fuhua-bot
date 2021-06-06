@@ -28,7 +28,7 @@ module.exports = async (client) => {
     }).catch(console.error)
 
     client.on('message', (message) => {
-        if(message.author.bot || message.channel.type === 'dm') return
+        if(message.author?.bot || message.channel.type === 'dm') return
         const rxn = findRxn(message.content.toLowerCase())
         if(rxn){
             message.channel.send(rxn)
